@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { transformCast } from 'helpers/transformCast';
 const API_KEY = '89e906a95928d3d1981707d668e671c3';
 
 axios.defaults.baseURL = 'http://api.themoviedb.org/3';
@@ -59,7 +60,7 @@ fetchMovieById(869025).then(data => console.log(data.genres[1].name));
 
 // fetchMovieByName().then(data => console.log(data));
 
-export async function fetchMovieByCast(movieId) {
+export async function fetchMovieCast(movieId) {
   const response = await axios(`/movie/${movieId}/credits`, {
     params: {
       api_key: API_KEY,
@@ -67,8 +68,8 @@ export async function fetchMovieByCast(movieId) {
       //   name: 'Batman',
     },
   });
-  return response.data;
+  return transformCast(response.data.cast);
 }
 
-fetchMovieByCast(949423).then(data => console.log(data.cast.name));
+fetchMovieCast(436270).then(data => console.log(data.cast));
 //вот эта name не работает - надо промепать
