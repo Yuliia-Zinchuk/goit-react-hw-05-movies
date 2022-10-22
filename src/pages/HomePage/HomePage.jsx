@@ -30,9 +30,7 @@ export const HomePage = () => {
                   fetchMovieById(id);
                 }}
               >
-                <Link to={`movies/${id}`}>
-                  {original_title || original_name}
-                </Link>
+                <Link to={`movies/${id}`}>{original_title}</Link>
               </li>
             );
           })}

@@ -4,6 +4,7 @@ export const MoviesPage = () => {
   return (
     <>
       {/* <div>Movies</div>; */}
+      {/* <div>искать тут</div> */}
       <Outlet />
     </>
   );

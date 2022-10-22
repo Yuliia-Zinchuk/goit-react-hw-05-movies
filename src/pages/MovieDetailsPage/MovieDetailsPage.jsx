@@ -1,3 +1,4 @@
+import { MovieDetails, MoviesInfo } from 'components/MovieDetails/MovieDetails';
 import { useFetchMovie } from 'hooks/useFetchEvent';
 import { useParams } from 'react-router-dom';
 
@@ -5,12 +6,19 @@ import { useParams } from 'react-router-dom';
 //   const { productId } = useParams();
 //   return <div>Now showing product with id - {productId}</div>;
 // };
-export const MoviesInfoPage = () => {
+export const MovieDetailsPage = () => {
   //------рабочий код с с юзпарамс из конспекта без кастомного хука
   //   const { movieId } = useParams();
   //   console.log(useParams());
   //   return <div>Now showing product with id - {movieId}</div>;
   const movie = useFetchMovie();
   //console.log(movie.id);
-  return movie && <div>{movie.original_title}</div>;
+  return (
+    <MovieDetails movie={movie} />
+    // movie && (
+    //   <div>
+    //     {movie.original_title}({movie.release_date})
+    //   </div>
+    // )
+  );
 };
