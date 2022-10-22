@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchMovieById, fetchMoviesPopular } from 'services/fetchApi';
 
 export const HomePage = () => {

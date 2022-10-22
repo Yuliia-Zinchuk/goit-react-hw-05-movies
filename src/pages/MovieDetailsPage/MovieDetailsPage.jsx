@@ -1,6 +1,6 @@
-import { MovieDetails, MoviesInfo } from 'components/MovieDetails/MovieDetails';
+import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { useFetchMovie } from 'hooks/useFetchEvent';
-import { useParams } from 'react-router-dom';
+//import { useParams } from 'react-router-dom';
 
 // const ProductDetails = () => {
 //   const { productId } = useParams();
