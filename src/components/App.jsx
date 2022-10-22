@@ -3,9 +3,10 @@ import { Layout } from './Layout/Layout';
 import { HomePage } from 'pages/HomePage/HomePage';
 import { MoviesPage } from 'pages/MoviesPage/MoviesPage';
 import { MovieDetailsPage } from 'pages/MovieDetailsPage/MovieDetailsPage';
-import { MovieDetails } from './MovieDetails/MovieDetails';
+//import { MovieDetails } from './MovieDetails/MovieDetails';
 import { CastPage } from 'pages/CastPage/CastPage';
 import { SearchPage } from 'pages/SearchPage/SearchPage';
+import { ReviewsPage } from 'pages/ReviewsPage/ReviewsPage';
 // import Home from 'path/to/pages/Home';
 // import About from 'path/to/pages/About';
 // import Products from 'path/to/pages/Products';
@@ -28,7 +29,7 @@ export const App = () => {
           <Route path="movies" element={<MoviesPage />}>
             <Route path=":movieId" element={<MovieDetailsPage />}>
               <Route path="cast" element={<CastPage />} />
-              <Route path="reviews" element={<CastPage />} />
+              <Route path="reviews" element={<ReviewsPage />} />
             </Route>
             <Route path="/movies" element={<SearchPage />} />
           </Route>
