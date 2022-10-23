@@ -1,30 +1,40 @@
 //import { SearchPage } from 'pages/SearchPage/SearchPage';
 //import { SearchMovies } from 'components/SearchMovies/SearchMovies';
 //import { Outlet } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
+import { Loader } from 'components/Loader/Loader';
+import { MoviesList } from 'components/MoviesList/MovieList';
 import { useState, useEffect } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom/dist';
+import { useSearchParams } from 'react-router-dom/dist';
 // import {
 
 //   fetchMovieByQuery,
 // } from 'services/fetchMovieByQuery';
-import { fetchMovieById } from 'services/fetchMovieById';
+//import { fetchMovieById } from 'services/fetchMovieById';
 import { fetchMovieByQuery } from 'services/fetchMovieByQuery';
 
 export const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSeachParams] = useSearchParams();
   const queryMovie = searchParams.get('query');
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const location = useLocation();
+  //const location = useLocation();
   console.log(queryMovie);
 
   useEffect(() => {
     if (queryMovie === null || queryMovie === '') return;
 
     async function fetchMovies() {
-      const data = await fetchMovieByQuery(queryMovie);
-      setMovies(data);
+      setIsLoading(true);
+      await fetchMovieByQuery(queryMovie)
+        .then(setMovies)
+        .catch(setError)
+        .finally(() => {
+          setIsLoading(false);
+        });
+      // setMovies(data);
     }
     fetchMovies();
   }, [queryMovie]);
@@ -51,25 +61,10 @@ export const MoviesPage = () => {
         <button type="submit">Search</button>
       </form>
 
-      {movies && (
-        <ul>
-          {movies.map(({ id, title }) => {
-            return (
-              <li
-                key={id}
-                onClick={() => {
-                  fetchMovieById(id);
-                }}
-              >
-                <Link to={`/movies/${id}`} state={{ from: location }}>
-                  {title}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-      {/* <Outlet /> */}
+      {movies && <MoviesList movies={movies} />}
+      {error &&
+        toast.warning('Sorry, the request cannot be completed! Server error')}
+      {isLoading && <Loader />}
     </>
   );
 };

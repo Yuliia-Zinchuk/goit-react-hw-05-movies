@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const API_KEY = '89e906a95928d3d1981707d668e671c3';
 
-axios.defaults.baseURL = 'http://api.themoviedb.org/3';
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
 export async function fetchMovieById(movieId) {
   const response = await axios(`/movie/${movieId}`, {

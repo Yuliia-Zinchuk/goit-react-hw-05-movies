@@ -7,6 +7,8 @@ import { MovieDetailsPage } from 'pages/MovieDetailsPage/MovieDetailsPage';
 import { CastPage } from 'pages/CastPage/CastPage';
 //import { SearchPage } from 'pages/SearchPage/SearchPage';
 import { ReviewsPage } from 'pages/ReviewsPage/ReviewsPage';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import Home from 'path/to/pages/Home';
 // import About from 'path/to/pages/About';
 // import Products from 'path/to/pages/Products';
@@ -35,6 +37,11 @@ export const App = () => {
         </Route>
         {/* </Route> */}
       </Routes>
+      <ToastContainer
+        autoClose={3000}
+        position="top-center"
+        hideProgressBar={false}
+      />
     </div>
   );
 };
