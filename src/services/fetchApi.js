@@ -83,3 +83,15 @@ export async function fetchMovieReviews(movieId) {
 }
 
 //fetchMovieReviews(718930).then(data => console.log(data));
+
+export async function fetchMovieByQuery(query) {
+  const response = await axios(`/search/movie`, {
+    params: {
+      api_key: API_KEY,
+      size: 20,
+      query,
+    },
+  });
+  return response.data.results;
+}
+//fetchMovieByQuery().then(data => console.log(data));
