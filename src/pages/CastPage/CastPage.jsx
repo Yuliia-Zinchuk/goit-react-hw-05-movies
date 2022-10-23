@@ -1,7 +1,7 @@
 //import { useFetchMovie } from 'hooks/useFetchMovie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchMovieCast } from 'services/fetchApi';
+import { fetchMovieCast } from 'services/fetchMovieCast';
 
 export const CastPage = () => {
   // const movie = useFetchMovie();

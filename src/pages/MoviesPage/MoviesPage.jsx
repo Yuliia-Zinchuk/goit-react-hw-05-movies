@@ -4,12 +4,12 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom/dist';
-import {
-  fetchMovieById,
-  fetchMovieByQuery,
+// import {
 
-  //fetchMoviesPopular,
-} from 'services/fetchApi';
+//   fetchMovieByQuery,
+// } from 'services/fetchMovieByQuery';
+import { fetchMovieById } from 'services/fetchMovieById';
+import { fetchMovieByQuery } from 'services/fetchMovieByQuery';
 
 export const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
@@ -53,7 +53,7 @@ export const MoviesPage = () => {
 
       {movies && (
         <ul>
-          {movies.map(({ original_title, original_name, id }) => {
+          {movies.map(({ id, title }) => {
             return (
               <li
                 key={id}
@@ -62,7 +62,7 @@ export const MoviesPage = () => {
                 }}
               >
                 <Link to={`/movies/${id}`} state={{ from: location }}>
-                  {original_title}
+                  {title}
                 </Link>
               </li>
             );
