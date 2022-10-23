@@ -13,14 +13,7 @@ export const HomePage = () => {
     fetchMoviesTrending()
       .then(setMovies)
       .catch(error => console.log(error));
-    // console.log(movies);
   }, []);
-  //console.log(movies);
-
-  // const ProductDetails = () => {
-  //   const { productId } = useParams();
-  //   return <div>Now showing product with id - {productId}</div>;
-  // };
 
   return (
     <>
