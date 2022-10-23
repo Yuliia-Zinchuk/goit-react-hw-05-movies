@@ -11,4 +11,5 @@ export const useFetchMovie = () => {
   }, [movieId]);
 
   return movie;
+  //console.log(movie);
 };
