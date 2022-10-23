@@ -1,8 +1,11 @@
+//import { useFetchMovie } from 'hooks/useFetchMovie';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/fetchApi';
 
 export const CastPage = () => {
+  // const movie = useFetchMovie();
+  // console.log(movie);
   const [cast, setCast] = useState([]);
   const { movieId } = useParams();
   useEffect(() => {
@@ -11,18 +14,21 @@ export const CastPage = () => {
 
   //fetchMovieCast(movieId).then(data => console.log(data));
 
-  console.log(useParams());
-  console.log(cast);
   return (
     <>
       <ul>
         {cast.map(({ id, name, img, character }) => {
+          // console.log(img);
           return (
             <li key={id}>
               <img
-                src={`https://image.tmdb.org/t/p/w500/${img}`}
-                alt="name"
-                width=""
+                src={
+                  img
+                    ? `https://image.tmdb.org/t/p/w500/${img}`
+                    : 'https://www.freeiconspng.com/uploads/no-image-icon-7.gif'
+                }
+                alt={`${name}`}
+                width="100px"
               />
               <p>{name}</p>
               <p>Character: {character}</p>
@@ -33,5 +39,3 @@ export const CastPage = () => {
     </>
   );
 };
-//<div>Cast!!! Нужно сделать фетч и сюда прислать инфу об актерах</div>;
-//) =>  {id, name, img, character}
