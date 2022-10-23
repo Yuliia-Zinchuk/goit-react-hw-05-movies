@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom/dist';
 import { fetchMovieById, fetchMoviesPopular } from 'services/fetchApi';
 
 export const HomePage = () => {
+  const location = useLocation();
+  console.log(location);
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetchMoviesPopular()
@@ -30,7 +33,9 @@ export const HomePage = () => {
                   fetchMovieById(id);
                 }}
               >
-                <Link to={`movies/${id}`}>{original_title}</Link>
+                <Link to={`movies/${id}`} state={{ from: location }}>
+                  {original_title}
+                </Link>
               </li>
             );
           })}
