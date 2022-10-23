@@ -5,7 +5,7 @@ import { MoviesPage } from 'pages/MoviesPage/MoviesPage';
 import { MovieDetailsPage } from 'pages/MovieDetailsPage/MovieDetailsPage';
 //import { MovieDetails } from './MovieDetails/MovieDetails';
 import { CastPage } from 'pages/CastPage/CastPage';
-import { SearchPage } from 'pages/SearchPage/SearchPage';
+//import { SearchPage } from 'pages/SearchPage/SearchPage';
 import { ReviewsPage } from 'pages/ReviewsPage/ReviewsPage';
 // import Home from 'path/to/pages/Home';
 // import About from 'path/to/pages/About';
@@ -26,14 +26,14 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="movies" element={<MoviesPage />}>
-            <Route path=":movieId" element={<MovieDetailsPage />}>
-              <Route path="cast" element={<CastPage />} />
-              <Route path="reviews" element={<ReviewsPage />} />
-            </Route>
-            <Route path="/movies" element={<SearchPage />} />
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId" element={<MovieDetailsPage />}>
+            <Route path="cast" element={<CastPage />} />
+            <Route path="reviews" element={<ReviewsPage />} />
           </Route>
+          {/* <Route path="/movies" element={<SearchPage />} /> */}
         </Route>
+        {/* </Route> */}
       </Routes>
     </div>
   );

@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { transformCast } from 'helpers/transformCast';
+//import { transformMovie } from 'helpers/transformMovie';
+import { transformReviews } from 'helpers/transformReviews';
 const API_KEY = '89e906a95928d3d1981707d668e671c3';
 
 axios.defaults.baseURL = 'http://api.themoviedb.org/3';
 
 export async function fetchMoviesPopular() {
-  const response = await axios('/trending/movie/day', {
+  const response = await axios('/trending/movie/week', {
     params: {
       api_key: API_KEY,
       size: 20,
@@ -13,12 +15,6 @@ export async function fetchMoviesPopular() {
   });
   return response.data.results;
 }
-//console.log(fetchMoviesPopular());
-//fetchMoviesPopular().then(data => console.log(data));
-
-//api.themoviedb.org/3/search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false
-//const id='Batman'
-//const movieId = 94997;
 export async function fetchMovieById(movieId) {
   const response = await axios(`/movie/${movieId}`, {
     params: {
@@ -26,11 +22,12 @@ export async function fetchMovieById(movieId) {
       //query: 'Batman',
     },
   });
+  // return transformMovie(response.data);
   return response.data;
 }
 
-//fetchMovieById(95403).then(data => console.log(data));
-fetchMovieById(869025).then(data => console.log(data.genres[1].name));
+//fetchMovieById(869025).then(data => console.log(data));
+//fetchMovieById(869025).then(data => console.log(data.genres[1].name));
 //movie.genres[1].name;
 
 // export async function fetchMovieBy(movieId) {
@@ -71,5 +68,18 @@ export async function fetchMovieCast(movieId) {
   return transformCast(response.data.cast);
 }
 
-fetchMovieCast(436270).then(data => console.log(data.cast));
+fetchMovieCast(663712).then(data => console.log(data));
 //вот эта name не работает - надо промепать
+
+export async function fetchMovieReviews(movieId) {
+  const response = await axios(`/movie/${movieId}/reviews`, {
+    params: {
+      api_key: API_KEY,
+      //   query: 'Batman',
+      //   name: 'Batman',
+    },
+  });
+  return transformReviews(response.data.results);
+}
+
+//fetchMovieReviews(718930).then(data => console.log(data));
