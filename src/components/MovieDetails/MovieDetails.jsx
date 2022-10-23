@@ -1,15 +1,17 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 
 export const MovieDetails = ({ movie }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   return (
     <>
       {movie && (
         <>
           <button
             onClick={() => {
-              navigate('/');
+              navigate(location?.state?.from ?? '/');
             }}
           >
             Go back
