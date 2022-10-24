@@ -1,9 +1,10 @@
 import { toast } from 'react-toastify';
 import { Loader } from 'components/Loader/Loader';
-import { MoviesList } from 'components/MoviesList/MovieList';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom/dist';
 import { fetchMovieByQuery } from 'services/fetchMovieByQuery';
+import css from './MoviesPage.module.css';
 
 export const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
@@ -50,14 +51,17 @@ export const MoviesPage = () => {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          className={css.inputMovie}
           type="text"
           name="query"
           autoComplete="off"
-          autoFocus
+          // autoFocus
           placeholder="Search movies"
         />
 
-        <button type="submit">Search</button>
+        <button className={css.btnSearch} type="submit">
+          Search
+        </button>
       </form>
 
       {movies && <MoviesList movies={movies} />}

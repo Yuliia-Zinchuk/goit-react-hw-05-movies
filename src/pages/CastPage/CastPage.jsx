@@ -43,7 +43,7 @@ export const CastPage = () => {
           );
         })}
       </ul>
-      {error && <p>There are no reviews for this movie. </p>}
+      {error && <p>There are no cast for this movie. </p>}
       {isLoading && <Loader />}
     </>
   );

@@ -1,13 +1,14 @@
 import { Link, useLocation } from 'react-router-dom';
 import { fetchMovieById } from 'services/fetchMovieById';
 import PropTypes from 'prop-types';
+import css from './MoviesList.module.css';
 
 export const MoviesList = ({ movies }) => {
   const location = useLocation();
 
   return (
     <>
-      <ul>
+      <ul className={css.moviesList}>
         {movies.map(({ title, id }) => {
           return (
             <li

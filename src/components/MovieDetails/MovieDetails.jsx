@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import PropTypes from 'prop-types';
+import css from './MovieDetails.module.css';
 
 export const MovieDetails = ({ movie }) => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export const MovieDetails = ({ movie }) => {
           >
             Go back
           </button>
-          <div>
+          <div className={css.movieWraper}>
             <img
               src={
                 movie.poster_path
@@ -27,21 +28,23 @@ export const MovieDetails = ({ movie }) => {
               alt={movie.title}
               width="500"
             />
-            <h2>
-              {movie.title} ({`${movie.release_date}`.slice(0, 4)})
-            </h2>
-            <p>Use score: {Math.round(movie.vote_average * 10)}%</p>
-            <h3>Overview</h3>
-            <p>{movie.overview}</p>
-            <h3>Genres</h3>
-            <p>
-              {movie.genres.map(({ id, name }) => {
-                return <span key={id}>{name} </span>;
-              })}
-            </p>
+            <div>
+              <h2>
+                {movie.title} ({`${movie.release_date}`.slice(0, 4)})
+              </h2>
+              <p>Use score: {Math.round(movie.vote_average * 10)}%</p>
+              <h3>Overview</h3>
+              <p>{movie.overview}</p>
+              <h3>Genres</h3>
+              <p>
+                {movie.genres.map(({ id, name }) => {
+                  return <span key={id}>{name} </span>;
+                })}
+              </p>
+            </div>
           </div>
-          <div>
-            <p>Additional information</p>
+          <div className={css.addInfoWraper}>
+            <h4>Additional information</h4>
             <nav>
               <ul>
                 <li>
@@ -55,9 +58,9 @@ export const MovieDetails = ({ movie }) => {
                   </Link>
                 </li>
               </ul>
-              <Outlet />
             </nav>
           </div>
+          <Outlet />
         </>
       )}
     </>

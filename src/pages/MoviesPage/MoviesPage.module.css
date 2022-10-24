@@ -1,0 +1,35 @@
+.inputMovie {
+  border-radius: 4px;
+  border: 1px solid rgb(5, 25, 87);
+  padding: 8px 12px;
+  font-size: 18px;
+  margin: 20px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.btnSearch {
+  /* display: block; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  padding: 8px 12px;
+  font-size: 17px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #3051ac;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btnSearch:hover {
+  background-color: #0b1baa;
+}
+
+.btnSearch:active {
+  background-color: #0b1baa;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

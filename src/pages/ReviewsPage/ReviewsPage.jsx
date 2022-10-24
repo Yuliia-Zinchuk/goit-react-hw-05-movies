@@ -38,7 +38,7 @@ export const ReviewsPage = () => {
         </ul>
       )}
 
-      {error && <p>There are no reviews for this movie. </p>}
+      {error && <p>We don't have any reviews for this movie. </p>}
       {isLoading && <Loader />}
     </>
   );

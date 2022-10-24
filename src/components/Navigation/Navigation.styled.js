@@ -8,5 +8,7 @@ color: blue;
 
 &.active {
     color: red;
+    text-decoration-line: underline ;
+
 }
 `;
