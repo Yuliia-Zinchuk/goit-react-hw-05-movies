@@ -1,27 +1,16 @@
-//import { SearchPage } from 'pages/SearchPage/SearchPage';
-//import { SearchMovies } from 'components/SearchMovies/SearchMovies';
-//import { Outlet } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Loader } from 'components/Loader/Loader';
 import { MoviesList } from 'components/MoviesList/MovieList';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom/dist';
-// import {
-
-//   fetchMovieByQuery,
-// } from 'services/fetchMovieByQuery';
-//import { fetchMovieById } from 'services/fetchMovieById';
 import { fetchMovieByQuery } from 'services/fetchMovieByQuery';
 
 export const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSeachParams] = useSearchParams();
   const queryMovie = searchParams.get('query');
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  //const location = useLocation();
-  console.log(queryMovie);
 
   useEffect(() => {
     if (queryMovie === null || queryMovie === '') return;
@@ -29,12 +18,16 @@ export const MoviesPage = () => {
     async function fetchMovies() {
       setIsLoading(true);
       await fetchMovieByQuery(queryMovie)
-        .then(setMovies)
-        .catch(setError)
+        .then(data => {
+          setMovies(data);
+          if (!data.length) {
+            setError(true);
+          }
+        })
+        .catch()
         .finally(() => {
           setIsLoading(false);
         });
-      // setMovies(data);
     }
     fetchMovies();
   }, [queryMovie]);
@@ -42,11 +35,17 @@ export const MoviesPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
+    console.log(form.elements.query.value);
+    if (form.elements.query.value.trim() === '') {
+      return toast.warning('Please, enter your request!');
+    }
+
     setSeachParams({ query: form.elements.query.value });
+
     form.reset();
+    setError(false);
   };
-  // const e = useSearchParams({query: e.target.value});
-  //{(submit = () => {})}
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -62,18 +61,13 @@ export const MoviesPage = () => {
       </form>
 
       {movies && <MoviesList movies={movies} />}
-      {error &&
-        toast.warning('Sorry, the request cannot be completed! Server error')}
+
+      {error && <p>Sorry, no results for your request. Please try again</p>}
+
       {isLoading && <Loader />}
     </>
   );
 };
 
-//   value={imageQuery}
-//   onChange={handleImageChange}
-//   value={imageQuery}
-//   onChange={handleImageChange}
-
 //   className={css.SearchForm_input}
 //   className={css.SearchForm_button}
-//     <div>искать тут searchBar создать и подключить</div>;
