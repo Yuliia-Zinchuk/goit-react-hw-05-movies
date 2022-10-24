@@ -1,24 +1,31 @@
-//import { useFetchMovie } from 'hooks/useFetchMovie';
+import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/fetchMovieCast';
 
 export const CastPage = () => {
-  // const movie = useFetchMovie();
-  // console.log(movie);
   const [cast, setCast] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   useEffect(() => {
-    fetchMovieCast(movieId).then(setCast);
+    fetchMovieCast(movieId)
+      .then(data => {
+        setCast(data);
+        if (!data.length) {
+          setError(true);
+        }
+      })
+      .catch(setError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [movieId]);
-
-  //fetchMovieCast(movieId).then(data => console.log(data));
 
   return (
     <>
       <ul>
         {cast.map(({ id, name, img, character }) => {
-          // console.log(img);
           return (
             <li key={id}>
               <img
@@ -36,6 +43,8 @@ export const CastPage = () => {
           );
         })}
       </ul>
+      {error && <p>There are no reviews for this movie. </p>}
+      {isLoading && <Loader />}
     </>
   );
 };
