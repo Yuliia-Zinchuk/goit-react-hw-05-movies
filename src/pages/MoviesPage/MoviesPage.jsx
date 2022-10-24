@@ -24,7 +24,7 @@ export const MoviesPage = () => {
             setError(true);
           }
         })
-        .catch()
+        .catch(setError)
         .finally(() => {
           setIsLoading(false);
         });
@@ -35,7 +35,7 @@ export const MoviesPage = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const form = e.target;
-    console.log(form.elements.query.value);
+
     if (form.elements.query.value.trim() === '') {
       return toast.warning('Please, enter your request!');
     }
@@ -61,9 +61,7 @@ export const MoviesPage = () => {
       </form>
 
       {movies && <MoviesList movies={movies} />}
-
       {error && <p>Sorry, no results for your request. Please try again</p>}
-
       {isLoading && <Loader />}
     </>
   );

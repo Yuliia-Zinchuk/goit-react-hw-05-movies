@@ -1,17 +1,31 @@
+import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/fetchMovieReviews';
 
 export const ReviewsPage = () => {
-  const [review, setReview] = useState([]);
+  const [review, setReview] = useState(null);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { movieId } = useParams();
   useEffect(() => {
-    fetchMovieReviews(movieId).then(setReview);
+    setIsLoading(true);
+    fetchMovieReviews(movieId)
+      .then(data => {
+        setReview(data);
+        if (!data.length) {
+          setError(true);
+        }
+      })
+      .catch(setError)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [movieId]);
-  console.log(review);
+  // console.log(review);
   return (
     <>
-      {review ? (
+      {review && (
         <ul>
           {review.map(({ id, author, content }) => {
             return (
@@ -22,9 +36,10 @@ export const ReviewsPage = () => {
             );
           })}
         </ul>
-      ) : (
-        <p>сделать компонент на ошибку и активировать его </p>
       )}
+
+      {error && <p>There are no reviews for this movie. </p>}
+      {isLoading && <Loader />}
     </>
   );
 };
