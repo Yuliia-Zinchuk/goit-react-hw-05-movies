@@ -1,10 +1,11 @@
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
+import PropTypes from 'prop-types';
 
 export const MovieDetails = ({ movie }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+
   return (
     <>
       {movie && (
@@ -18,9 +19,13 @@ export const MovieDetails = ({ movie }) => {
           </button>
           <div>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              src={
+                movie.poster_path
+                  ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+                  : 'https://www.freeiconspng.com/uploads/movie-icon-19.png'
+              }
               alt={movie.title}
-              width="400"
+              width="500"
             />
             <h2>
               {movie.title} ({`${movie.release_date}`.slice(0, 4)})
@@ -57,4 +62,8 @@ export const MovieDetails = ({ movie }) => {
       )}
     </>
   );
+};
+
+MovieDetails.propTypes = {
+  movie: PropTypes.object,
 };
