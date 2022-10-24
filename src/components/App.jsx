@@ -19,7 +19,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // } from 'services/fetchApi';
 
 export const App = () => {
-  console.log(999);
+  //console.log(999);
   // fetchMoviesPopular().then(data => console.log(data.data.results));
   // fetchEventById().then(data => console.log(data.results));
 
