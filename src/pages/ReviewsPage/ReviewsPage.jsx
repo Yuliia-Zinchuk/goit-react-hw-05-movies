@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieReviews } from 'services/fetchMovieReviews';
 
-export const ReviewsPage = () => {
+const ReviewsPage = () => {
   const [review, setReview] = useState(null);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,3 +43,4 @@ export const ReviewsPage = () => {
     </>
   );
 };
+export default ReviewsPage;

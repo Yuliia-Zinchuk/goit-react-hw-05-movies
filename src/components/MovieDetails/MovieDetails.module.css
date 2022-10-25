@@ -1,12 +1,15 @@
 .movieWraper {
   display: flex;
   gap: 20px;
-  padding: 20px;
+  padding: 5px 20px;
   box-shadow: 0px 2px 0px 0px rgba(112, 102, 112, 1);
 }
 
 .addInfoWraper {
-  padding: 30px;
-
+  padding: 5px 20px;
   box-shadow: 0px 2px 0px 0px rgba(112, 102, 112, 1);
+}
+
+.btnSearch {
+  margin-left: 20px;
 }

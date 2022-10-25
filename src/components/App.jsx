@@ -1,13 +1,16 @@
+import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { HomePage } from 'pages/HomePage/HomePage';
-import { MoviesPage } from 'pages/MoviesPage/MoviesPage';
-import { MovieDetailsPage } from 'pages/MovieDetailsPage/MovieDetailsPage';
-import { CastPage } from 'pages/CastPage/CastPage';
-import { ReviewsPage } from 'pages/ReviewsPage/ReviewsPage';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const MoviesPage = lazy(() => import('../pages/MoviesPage/MoviesPage'));
+const MovieDetailsPage = lazy(() =>
+  import('../pages/MovieDetailsPage/MovieDetailsPage')
+);
+const CastPage = lazy(() => import('../pages/CastPage/CastPage'));
+const ReviewsPage = lazy(() => import('../pages/ReviewsPage/ReviewsPage'));
 export const App = () => {
   return (
     <div>

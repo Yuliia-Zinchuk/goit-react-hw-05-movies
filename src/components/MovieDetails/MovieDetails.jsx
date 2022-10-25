@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom/dist';
 import PropTypes from 'prop-types';
 import css from './MovieDetails.module.css';
+import { Suspense } from 'react';
 
 export const MovieDetails = ({ movie }) => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export const MovieDetails = ({ movie }) => {
       {movie && (
         <>
           <button
+            className={css.btnSearch}
             onClick={() => {
               navigate(location?.state?.from ?? '/');
             }}
@@ -26,7 +28,7 @@ export const MovieDetails = ({ movie }) => {
                   : 'https://www.freeiconspng.com/uploads/movie-icon-19.png'
               }
               alt={movie.title}
-              width="500"
+              width="300"
             />
             <div>
               <h2>
@@ -60,7 +62,9 @@ export const MovieDetails = ({ movie }) => {
               </ul>
             </nav>
           </div>
-          <Outlet />
+          <Suspense fullback={null}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </>

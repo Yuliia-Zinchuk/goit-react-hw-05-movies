@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom/dist';
 import { fetchMovieByQuery } from 'services/fetchMovieByQuery';
 import css from './MoviesPage.module.css';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSeachParams] = useSearchParams();
   const queryMovie = searchParams.get('query');
@@ -71,5 +71,6 @@ export const MoviesPage = () => {
   );
 };
 
+export default MoviesPage;
 //   className={css.SearchForm_input}
 //   className={css.SearchForm_button}

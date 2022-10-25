@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchMovieCast } from 'services/fetchMovieCast';
 
-export const CastPage = () => {
+const CastPage = () => {
   const [cast, setCast] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,3 +48,5 @@ export const CastPage = () => {
     </>
   );
 };
+
+export default CastPage;
